@@ -12,8 +12,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
+    <!-- Lightbox2 CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="style.css">
 </head>
+
 
 <body> 
     <!-- header -->
@@ -88,19 +91,19 @@
                     </div>
 
                     <div class="portfolio-grid grid">
-                        <div><img src="images/port-1.JPG" alt="">
+                        <div><img src="images/port-1.JPG" alt="" class="zoomable-img">
                         </div>
-                        <div><img src="images/port-2.JPG" alt="">
+                        <div><img src="images/port-2.JPG" alt="" class="zoomable-img">
                         </div>
-                        <div><img src="images/port-3.JPG" alt="">
+                        <div><img src="images/port-3.JPG" alt="" class="zoomable-img">
                         </div>
-                        <div><img src="images/port-4.JPG" alt="">
+                        <div><img src="images/port-4.JPG" alt="" class="zoomable-img">
                         </div>
-                        <div><img src="images/port-5.JPG" alt="">
+                        <div><img src="images/port-5.JPG" alt="" class="zoomable-img">
                         </div>
-                        <div><img src="images/port-6.JPG" alt="">
+                        <div><img src="images/port-6.JPG" alt="" class="zoomable-img">
                         </div>
-                        <div><img src="images/port-7.JPG" alt="">
+                        <div><img src="images/port-7.JPG" alt="" class="zoomable-img">
                         </div>
                     </div>
                 </div>
@@ -138,6 +141,45 @@
 
     <!-- typewriting js -->
     <script src="typewriting-master/typewriting.js"></script>
+    <!-- Lightbox2 JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+
+    <!-- Modal Lightbox -->
+    <div id="lightbox-modal" class="lightbox">
+        <span class="close-btn">&times;</span>
+        <img id="lightbox-img" src="" alt="Enlarged photo">
+    </div>
+
+    <script>
+        const modal = document.getElementById('lightbox-modal');
+        const modalImg = document.getElementById('lightbox-img');
+        const closeBtn = document.querySelector('.close-btn');
+        const images = document.querySelectorAll('.zoomable-img');
+
+        images.forEach(img => {
+            img.addEventListener('click', () => {
+            modal.style.display = 'flex';
+            modalImg.src = img.src;
+            document.body.classList.add('modal-open'); // 🚫 disable scroll
+            });
+        });
+
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+            modalImg.src = "";
+            document.body.classList.remove('modal-open'); // ✅ enable scroll
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target !== modalImg && e.target !== closeBtn) {
+            modal.style.display = 'none';
+            modalImg.src = "";
+            document.body.classList.remove('modal-open'); // ✅ enable scroll
+            }
+        });
+    </script>
+
+
 </body>
 
 
